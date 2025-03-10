@@ -5,11 +5,50 @@ get("/") do
   erb(:homepage)
 end
 
-# Dynamic route for any dice/sides
-get("/dice/:dice/:sides") do
-  @num_dice = params[:dice].to_i
-  @num_sides = params[:sides].to_i
-  @rolls = Array.new(@num_dice) { rand(1..@num_sides) }
+get("/dice/2/6") do
+  @rolls = []
 
-  erb(:roll)  # adding `views/roll.erb`
+  2.times do
+    die = rand(1..6)
+
+    @rolls.push(die)
+  end
+
+  erb(:two_six)
+end
+
+get("/dice/2/10") do
+  @rolls = []
+
+  2.times do
+    die = rand(1..10)
+
+    @rolls.push(die)
+  end
+
+  erb(:two_ten)
+end
+
+get("/dice/1/20") do
+  @rolls = []
+
+  1.times do
+    die = rand(1..20)
+
+    @rolls.push(die)
+  end
+
+  erb(:one_twenty)
+end
+
+get("/dice/5/4") do
+  @rolls = []
+
+  5.times do
+    die = rand(1..4)
+
+    @rolls.push(die)
+  end
+
+  erb(:five_four)
 end
